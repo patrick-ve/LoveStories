@@ -36,8 +36,11 @@
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "handlebars": "^4.1.2",
+    "http": "0.0.0",
     "lodash": "^4.17.11",
-    "mongoose": "^5.5.7",
+    "mongoose": "^5.5.8",
+    "normalize.css": "^8.0.1",
+    "socket.io": "^2.2.0",
     "validator": "^10.11.0"
   }
 }
