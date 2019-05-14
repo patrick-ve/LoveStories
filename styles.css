@@ -54,9 +54,15 @@ Visual:     background, box-shadow
 Typography: font-family, font-size      text-align, text-transform      color
 Misc.:      content, cursor, etc. */
 
-
-html {
+* {
     box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
 
     background-color: #EEB902;
 
