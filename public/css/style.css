@@ -49,74 +49,29 @@ table {
 
 /* Properties should have the following order:
 Layout:     position, top, right, bottom, left, z-index, display, transform
-Box model:  width, height, overflow     margin, padding,    border, outline
+Box model:  width, height, overflow         margin, padding,                border, outline
 Visual:     background, box-shadow
-Typography: font-family, font-size      text-align, text-transform      color
+Typography: font-family, font-size          text-align, text-transform      color
 Misc.:      content, cursor, etc. */
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    background-color: #EEB902;
+  background-color: #EEB902;
 
-    font-family: 'Lobster', cursive;
-    font-family: 'Varela Round', sans-serif;
+  font-family: 'Lobster', cursive;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
 }
 
-header {
-    height: 10vh;
-
-    background-color: #2D7DD2;
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 5em;
 }
-
-header img {
-    display: block;
-
-    max-height: 10vh;
-
-    margin: 0 auto;
-}
-
-div {
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-
-    height: 7.5vh;
-    width: 100%;
-
-    background-color: #2D7DD2; 
-}
-
-div button:first-of-type {
-    width: 10vw;
-}
-
-div button:last-of-type {
-    width: 10vw;
-}
-
-div form {
-    max-height: 5vh;
-    width: 80vw;
-
-    padding: 8px;
-
-    border-radius: 10px;
-    border-style: none;
-
-    font-family: 'Varela Round', sans-serif;
-    font-size: 1.25rem;
-
-    overflow: auto;
-    touch-action: manipulation;
-}
-
