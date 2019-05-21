@@ -1,52 +1,44 @@
-const express = require('express');
-const routes = require('./routes');
-const user = require('./routes/user');
-const http = require('http');
-const path = require('path');
+// var express = require('express');
+// var path = require('path');
+// var expbs = require('express-handlebars');
 
-const app = express();
+// var app = express();
 
-// De server draait in productie meestal niet op 5000; dit is afhankelijk van de .env settings
-const PORT = process.env.PORT || 5000;
-app.set('port', process.env.PORT || 5000);
+// // Handlebars engine setup
+// app.engine('handlebars', expbs({
+//   defaultLayout: 'main',
+//   layoutsDir: path.join(__dirname, 'views/layouts')
+// }));
+// app.set('view engine', 'handlebars');
 
-// Creëeren van static folder en views. __dirname verwijst naar de map waarin dit bestand (app.js) staat
-app.use(express.static(path.join(__dirname, 'public')));
+// // app.use(express.static(__dirname + 'public'));
+// app.set('views', path.join(__dirname, 'views'));
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('routes', path.join(__dirname, 'routes'));
-app.set('view engine', 'hbs');
+// // Routes voor website
+// app.get('/', (req, res) => {
+//   res.render('home');
+// });
 
+// app.get('/about', (req, res) => {
+//   res.render('about');
+// })
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
+// // 404 handler (middleware)
+// app.use((req, res, next) => {
+//   res.status(404);
+//   req.render('404');
+// })
 
-app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname + '/about.html'));
-});
+// // 500 error handler
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500);
+//   res.render('500');
+// })
 
-app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname + '/contact.html'));
-});
+// // Definiëren van poort
+// app.set('port', (process.env.PORT || 3000));
 
- // Page not found: 404 pagina
-app.use((req, res) => { 
-  res.type('text/plain');
-  res.status(404);
-  res.send('Foutmelding 404 - Pagina niet gevonden!');
-});
-
-// Server error: 500 pagina
-app.use((err, req, res, next) => { 
-  console.error(err.stack);
-  res.type('text/plain');
-  res.status(500);
-  res.send('Foutmelding 500 - Server Error!');
-});
-
-// Server luistert naar verkeer op poort 5000
-app.listen(app.get(PORT), () => {
-  console.log( 'Server is gestart op http://localhost:' +
-  app.get('port') + '. Druk op Ctrl-C om af te sluiten.' );
-});
+// app.listen(app.get('port'), () => {
+//   console.log('Server is gestart op poort: ' + app.get('port'));
+// });
