@@ -156,3 +156,18 @@ header {
 
 	opacity: 1;
 }
+
+.form__input-age {
+	height: 30px;
+	width: 100%;
+}
+
+label {
+	font-family: 'Lobster', cursive;
+	font-size: 1em;
+}
+
+input {
+	font-family: 'Varela Round', sans-serif;
+	font-size: 16px;
+}

@@ -5,6 +5,7 @@ const path = require('path');
 const data = require('./models/data');
 const gsap = require('gsap');
 
+
 app.engine('handlebars', exhbs({
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'views/layouts')
