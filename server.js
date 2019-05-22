@@ -3,6 +3,7 @@ const app = express();
 const exhbs = require('express-handlebars');
 const path = require('path');
 const data = require('./models/data');
+const gsap = require('gsap');
 
 app.engine('handlebars', exhbs({
     defaultLayout: 'main',
@@ -23,6 +24,7 @@ app.get('/about', (req, res) => {
 app.get('/search', (req, res) => {
     res.render('search');
 });
+
 
 app.get('/api/data', (req, res) => {
     res.json(data);
