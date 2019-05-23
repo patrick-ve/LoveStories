@@ -32,6 +32,7 @@
     "yargs": "^13.2.4"
   },
   "dependencies": {
+    "@dogstudio/highway": "^2.1.2",
     "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "cookie-parser": "^1.4.4",

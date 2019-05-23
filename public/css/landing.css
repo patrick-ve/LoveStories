@@ -67,8 +67,10 @@ html, body {
 	margin: 0 auto;
 	padding: 0;
 
-	background-image: url('/images/background_festify.png');
+	background-image: url('/images/background-1.jpeg');
 	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 
 	background-color: #2D7DD2;
 	color: #ffffff;
@@ -181,7 +183,7 @@ input {
 
 .main__landing-heading {
 	margin-bottom: 5%;
-	padding-top: 50%;
+	padding-top: 25%;
 
 	font-size: 5em;
 }
@@ -191,7 +193,7 @@ input {
 
 	max-width: 80%;
 
-	margin: 0 auto 40% auto;
+	margin: 0 auto 65% auto;
 
 	font-size: 1.5em;
 	line-height: 1.25em;

@@ -15,7 +15,9 @@ app.use(express.static(__dirname + '/public'));
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('landing', {
+        layout: 'landing'
+    });
 });
 
 app.get('/about', (req, res) => {
