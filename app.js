@@ -1,44 +1,101 @@
-// var express = require('express');
-// var path = require('path');
-// var expbs = require('express-handlebars');
+const express = require('express');
+const exphbs = require('express-handlebars');
+const path = require('path');
+const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const mongo = require('mongodb');
+const engines = require('consolidate');
 
-// var app = express();
+// Gebruiken van models
+let Festival = require('./models/festival');
 
-// // Handlebars engine setup
-// app.engine('handlebars', expbs({
-//   defaultLayout: 'main',
-//   layoutsDir: path.join(__dirname, 'views/layouts')
-// }));
-// app.set('view engine', 'handlebars');
+// Load view engine
+app.engine('.hbs', exphbs({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'views/layouts')
+}));
+app.set('view engine', '.hbs');
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
-// // app.use(express.static(__dirname + 'public'));
-// app.set('views', path.join(__dirname, 'views'));
+var url = 'mongodb://localhost/festify';
 
-// // Routes voor website
-// app.get('/', (req, res) => {
-//   res.render('home');
-// });
+mongoose.connect(url, {
+    useNewUrlParser: true
+});
+let db = mongoose.connection;
 
-// app.get('/about', (req, res) => {
-//   res.render('about');
-// })
+// Check for db connection
+db.once('open', function(){
+    console.log('Connected to MongoDB');
+});
 
-// // 404 handler (middleware)
-// app.use((req, res, next) => {
-//   res.status(404);
-//   req.render('404');
-// })
+// Check for db errors
+db.on('error', function(err){
+    console.log(err);
+});
 
-// // 500 error handler
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500);
-//   res.render('500');
-// })
+// Middleware voor routes
+// app.use('/api', require('./routes/api'));
 
-// // Definiëren van poort
-// app.set('port', (process.env.PORT || 3000));
+// Routes
+app.get('/', (req, res) => {
+    res.render('landing', {
+        layout: 'landing'
+    });
+});
 
-// app.listen(app.get('port'), () => {
-//   console.log('Server is gestart op poort: ' + app.get('port'));
-// });
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.get('/festivals', (req, res, next) => {
+    mongo.connect(url, function(err, db) {
+        assert.equal
+    });
+});
+    
+app.get('/search', (req, res) => {
+    res.render('search');
+});
+
+app.get('/registered', (req, res) => {
+    res.render('registered');
+});
+
+app.get('/api/data', (req, res) => {
+    res.json(data);
+});
+
+app.post('/submit-credentials', (req, res) => {
+    console.log('Form (from querystring): ' + req.query.form);
+    console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+    console.log('Username (from visible form field): ' + req.body.username);
+    console.log('password (from visible form field): ' + req.body.password);
+    // const username = req.body.username;
+    // const password = req.body.password;
+    res.redirect(303, '/registered');
+    res.end();
+})
+    
+// 404
+app.use((req, res, next) => {
+    res.status(404);
+    res.render('404');
+});
+    
+// 500
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500);
+    res.render('500');
+});
+
+app.listen(process.env.port || 8080, () => {
+    console.log('Server is gestart op poort ', 8080);
+});

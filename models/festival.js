@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-// Aanmaken van Festival Schema + model
-const festivalSchema = mongoose.Schema({
+// Aanmaken van User Schema + model
+let festivalSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
+    date: String,
     genre: String,
-    date: Date,
-    backgroundImage: String
+    location: String
 });
 
-module.exports =  mongoose.model('festival', festivalSchema);
+let Festival = module.exports = mongoose.model('Festival', festivalSchema);
