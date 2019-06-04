@@ -1,0 +1,15 @@
+<div class="wrapper__festivals">
+    {{#each festivals}}
+        <article style="background-image: url({{backgroundImageUrl}})" class="wrapper__festivals-card">
+            <h2>{{name}}</h2>
+            <p>{{genre}}, {{date}}</p>
+            <p>{{location}}</p>
+            <form method="post" action="/festivals/{{id}}?_method=DELETE" enctype="application/x-www-form-urlencoded"></form>>
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Delete">
+            </form>
+        </article>
+    {{else}}
+        <p>There are no festivals to display..</p>
+    {{/each}}
+</div>

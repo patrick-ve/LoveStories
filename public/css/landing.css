@@ -153,13 +153,6 @@ header {
 	background-color: rgba(238,185,2,1);
 }
 
-.form {
-	position: absolute;
-	top: 12.5%;
-	left: 2.5%;
-
-	opacity: 1;
-}
 
 .form__input-age {
 	height: 30px;

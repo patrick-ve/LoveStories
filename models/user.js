@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+const ObjectId = mongoose.ObjectId;
+const Schema = mongoose.Schema;
 
-// Aanmaken van User Schema + model
-const userSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+const userSchema = new Schema({
     name: String,
-    age: Number,
-    biographyText: String
+    email: String,
+    password: String,
+    date: Date,
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('users', userSchema);
