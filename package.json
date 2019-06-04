@@ -4,7 +4,7 @@
   "description": "A dating app for party animals",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "node app"
   },
   "author": "Patrick van Everdingen",
   "license": "MIT",
