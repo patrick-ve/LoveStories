@@ -1,0 +1,11 @@
+<div class="wrapper__stories">
+    {{#each stories}}
+        <article class="wraper__stories-card">
+            <h3 class="wrapper__stories-title">{{title}}</h3>
+            <p class="wrapper__stories-description">{{description}}</p>
+            <p class="wrapper__stories-date">Date of encounter: <em>{{date}}</em></p>
+        </article>
+    {{else}}
+        <p>No stories available</p>
+    {{/each}}
+</div>

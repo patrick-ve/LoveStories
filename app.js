@@ -1,84 +1,85 @@
+// Binnenhalen van node modules
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const mongo = require('mongodb');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const methodOverride = require('method-override');
-const session = require('express-session');
+const bodyParser = require('body-parser');
+
+// Initiëren van applicatie
 const app = express();
 
-// Load routes
-const festivals = require('./routes/festivals');
-const users = require('./routes/users');
+const PORT = 8080;
 
-// Passport Configuraties
-require('./config/passport')(passport);
+// Database setup -----------------------------------------
+mongoose.connect('mongodb://localhost:27017/lovestories', {
+    useNewUrlParser: true
+});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Database has started');
+});
 
-// Load view engine
+// Binnenhalen van models
+require('./models/Story');
+const Story = mongoose.model('stories');
+
+// Middleware setup ---------------------------------------
+// Handlebars templating engine
 app.engine('.hbs', exphbs({
     extname: '.hbs',
-    defaultLayout: 'main',
-    layoutsDir: path.join(__dirname, 'views/layouts')
+    defaultLayout: 'main'
 }));
 app.set('view engine', '.hbs');
 
-// Define public resources
-app.use(express.static(__dirname + '/public'));
-
-// Setup bodyParser
+// Body parser middleware
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
 
-// Method override middleware
-app.use(methodOverride('_method'));
 
-// Express session middleware
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}));
-
-// Database setup
-mongoose.connect('mongodb://localhost/festify', {
-    useNewUrlParser: true
-});
-let db = mongoose.connection;
-
-// Controleren van database errors
-db.on('error', () => {
-    console.log(err);
-});
-
-db.once('open', () => {
-    console.log('Verbonden met MongoDB');
-});
+// Definiëren van public resources
+app.use(express.static(__dirname + '/public'));
 
 
-
+// Routes op server ---------------------------------------
 app.get('/', (req, res) => {
-    res.render('landing')
+    res.render('home');
 });
 
 app.get('/about', (req, res) => {
-    res.render('about', {
-        defaultLayout: 'landing'
-    });
+    res.render('about');
 });
 
+// Afhandelen van toevoegen verhalen
+app.get('/stories', (req, res) => {
+    Story.find({})
+        .sort({date: 'desc'})
+        .then(stories => { // Promise waaruit een pagina render volgt
+            res.render('stories/feed',{
+                stories: stories
+            });
+        });
+});
 
-// Use festival routes
-app.use('/festivals', festivals);
-app.use('/users', users);
+app.get('/stories/add', (req, res) => {
+    res.render('stories/add')
+});
 
+app.post('/stories', (req, res) => {
+        const newStory = {
+            title: req.body.title,
+            description: req.body.description,
+            date: req.body.date
+        }
+        new Story(newStory)
+            .save()
+            .then(story => { // Promise waaruit een redirect volgt
+                res.redirect('/stories');
+            });
+    });
 
-
-
-app.listen('8080', () => {
-    console.log('Server is gestart op poort 8080');
+app.listen(PORT, () => {
+    console.log(`Server has started at localhost:${PORT}`);
 });
