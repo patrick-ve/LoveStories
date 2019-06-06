@@ -4,6 +4,13 @@
             <h3 class="wrapper__stories-title">{{title}}</h3>
             <p class="wrapper__stories-description">{{description}}</p>
             <p class="wrapper__stories-date">Date of encounter: <em>{{date}}</em></p>
+            <div class="wrapper__stories-actions">
+                <a class="wrapper__stories-edit "href="/stories/edit/{{id}}" class="wrapper__stories-edit">Edit</a>
+                <form class="wrapper__stories-delete" action="/stories/{{id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
         </article>
     {{else}}
         <p>No stories available</p>
