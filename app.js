@@ -12,7 +12,7 @@ const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 // Binnenhalen van routes
 const stories = require('./routes/stories');
@@ -110,6 +110,6 @@ app.get('/about', (req, res) => {
 app.use('/stories', stories);
 app.use('/users', users)
 
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`Server has started at localhost:${PORT}`);
 });
