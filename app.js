@@ -111,5 +111,5 @@ app.use('/stories', stories);
 app.use('/users', users)
 
 app.listen(port, () => {
-    console.log(`Server has started at localhost:${PORT}`);
+    console.log(`Server has started at localhost:${port}`);
 });
