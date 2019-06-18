@@ -1,47 +1,29 @@
 {
-  "name": "festify",
+  "name": "lovestories",
   "version": "1.0.0",
-  "description": "This package comprises the login module for Festify, a fictional dating app.",
-  "main": "index.js",
+  "description": "A dating app where users can reconnect with their crushes",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patrick-ve/festify.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "webdev",
-    "html",
-    "css",
-    "javascript",
     "node.js",
     "npm",
+    "express",
     "mongodb"
   ],
   "author": "Patrick van Everdingen",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/patrick-ve/festify/issues"
-  },
-  "homepage": "https://github.com/patrick-ve/festify#readme",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "nodemon": "^1.19.0",
-    "yargs": "^13.2.4"
-  },
   "dependencies": {
-    "chalk": "^2.4.2",
-    "dotenv": "^8.0.0",
-    "express": "^4.16.4",
-    "handlebars": "^4.1.2",
-    "http": "0.0.0",
-    "lodash": "^4.17.11",
-    "mongoose": "^5.5.8",
-    "normalize.css": "^8.0.1",
-    "socket.io": "^2.2.0",
-    "swiper": "^4.5.0",
-    "validator": "^10.11.0"
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.5.13",
+    "multer": "^1.4.1",
+    "path": "^0.12.7",
+    "time-stamp": "^2.2.0"
   }
 }
