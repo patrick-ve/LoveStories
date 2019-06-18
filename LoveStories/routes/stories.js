@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-// Binnenhalen van models
+// Binnenhalen van story model
 require('../models/Story');
 const Story = mongoose.model('stories');
 

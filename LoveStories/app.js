@@ -9,10 +9,10 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const methodOverride = require('method-override');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-
 const PORT = 8080;
 
 // Binnenhalen van routes
