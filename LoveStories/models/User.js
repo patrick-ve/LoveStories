@@ -14,11 +14,10 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     date: {
-        type: Date,
-        default: Date.now
+        type: String
     }
 });
 

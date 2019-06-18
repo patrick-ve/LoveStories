@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 
 // Binnenhalen van story model
 require('../models/User');
@@ -94,10 +95,12 @@ router.post('/register', (req, res) => {
 
     // Bij geen validatiefouten -> gebruiker kan aangemaakt worden
     } else {
+        let date = new Date;
         const newUser = new User({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            date: moment(date).format('DD-MM-YYYY')
         });
 
         // Gebruiken van bcrypt om wachtwoord te hashen
@@ -107,6 +110,7 @@ router.post('/register', (req, res) => {
                 newUser.password = hash;
                 newUser.save()
                     .then(user => {
+                        // Redirect met succesmelding
                         req.flash('success_message', 'You have successfully registered and you can now log in!');
                         res.redirect('/users/login');
                     })
