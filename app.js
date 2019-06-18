@@ -8,11 +8,18 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const methodOverride = require('method-override');
+const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-
 const PORT = 8080;
+
+// Binnenhalen van routes
+const stories = require('./routes/stories');
+const users = require('./routes/users');
+
+// Binnenhalen van passport config
+require('./config/passport')(passport);
 
 // require('dotenv').config();
 // const mongooseURL = process.env.MONGO_DB_URL;
@@ -32,10 +39,6 @@ db.on('reconnected', () => {
 db.on('disconnected', () => {
     console.log('Database has disconnected.')
 });
-
-// Binnenhalen van models
-require('./models/Story');
-const Story = mongoose.model('stories');
 
 // Middleware setup ---------------------------------------
 // Handlebars templating engine
@@ -61,13 +64,19 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Flash message middleware
 app.use(flash());
 
-// Globale variablen voor flash messages
+// Globale variablen voor applicatie
 app.use((req, res, next) => {
     res.locals.success_message = req.flash('success_message');
     res.locals.error_message = req.flash('error_message');
     res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
     next();
 });
 
@@ -97,74 +106,8 @@ app.get('/about', (req, res) => {
     res.render('about');
 });
 
-// Afhandelen van toevoegen verhalen
-app.get('/stories', (req, res) => {
-    Story.find({})
-        .sort({date: 'desc'})
-        .then(stories => { // Promise waaruit een pagina render volgt
-            res.render('stories/feed',{
-                stories: stories
-            });
-        });
-});
-
-app.get('/stories/add', (req, res) => {
-    res.render('stories/add')
-});
-
-app.get('/stories/edit/:id', (req, res) => {
-    Story.findOne({
-        _id: req.params.id
-    })
-    .then(story => {
-        res.render('stories/edit', {
-            story: story
-        });
-    });
-    
-});
-
-app.post('/stories', (req, res) => {
-        const newStory = {
-            title: req.body.title,
-            description: req.body.description,
-            date: req.body.date
-        }
-        new Story(newStory)
-            .save()
-            // Promise waaruit een redirect volgt
-            .then(story => { 
-                req.flash('success_message', 'Your story has successfully been added!')
-                res.redirect('/stories');
-            });
-    });
-
-app.put('/stories/:id', (req, res) => {
-    Story.findOne({
-        _id: req.params.id
-    })
-    .then(story => {
-        // Veranderen van verhalen
-        story.title = req.body.title,
-        story.description = req.body.description,
-        story.date = req.body.date
-        story.save()
-            .then(story => {
-                req.flash('success_message', 'Your story has successfully been updated!')
-                res.redirect('/stories')
-            });
-    });
-});
-
-app.delete('/stories/:id', (req, res) => {
-    Story.deleteOne({
-        _id: req.params.id
-    })
-        .then(() => {
-            req.flash('success_message', 'Your story has successfully been deleted!')
-            res.redirect('/stories')
-        });
-});
+app.use('/stories', stories);
+app.use('/users', users)
 
 app.listen(PORT, () => {
     console.log(`Server has started at localhost:${PORT}`);
