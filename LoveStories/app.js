@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const methodOverride = require('method-override');
-const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 // Initiëren van applicatie
@@ -18,6 +17,9 @@ const PORT = 8080;
 // Binnenhalen van routes
 const stories = require('./routes/stories');
 const users = require('./routes/users');
+
+// Binnenhalen van passport config
+require('./config/passport')(passport);
 
 // require('dotenv').config();
 // const mongooseURL = process.env.MONGO_DB_URL;
@@ -62,13 +64,19 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Flash message middleware
 app.use(flash());
 
-// Globale variablen voor flash messages
+// Globale variablen voor applicatie
 app.use((req, res, next) => {
     res.locals.success_message = req.flash('success_message');
     res.locals.error_message = req.flash('error_message');
     res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
     next();
 });
 

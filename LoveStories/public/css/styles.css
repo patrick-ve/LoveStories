@@ -147,7 +147,7 @@ a, p, li {
             color: #fc4a1a;
         }
 
-        .navigation__menu-user a:first-of-type {
+        .user__add-story {
             padding: 12px 15px;
 
             border-radius: 15px;
@@ -156,7 +156,7 @@ a, p, li {
             background: linear-gradient(to right, #f7b733, #fc4a1a);
         }
 
-        .navigation__menu-user a:first-of-type:hover {
+        .user__add-story:hover {
             color: #fc4a1a;
             background: white;
         }
