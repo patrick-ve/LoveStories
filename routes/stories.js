@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const moment = require('moment');
 const { ensureAuthenticated } = require('../utils/auth');
 
 // Binnenhalen van story model
@@ -29,18 +30,24 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
         _id: req.params.id
     })
     .then(story => {
-        res.render('stories/edit', {
-            story: story
-        });
+        if(story.user != req.user.id) {
+            req.flash('error_message', 'You are not allowed to edit this story!');
+            res.redirect('/stories');
+        } else {
+            res.render('stories/edit', {
+                story: story
+            });
+        }
     });
-    
 });
 
 router.post('/', ensureAuthenticated, (req, res) => {
+        let date = req.body.date;
         const newStory = {
             title: req.body.title,
             description: req.body.description,
-            date: req.body.date
+            dateAdded: moment(date).format('DD-MM-YYYY'),
+            user: req.user.id
         }
         new Story(newStory)
             .save()

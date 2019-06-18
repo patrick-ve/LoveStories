@@ -3,7 +3,7 @@
         <article class="wraper__stories-card">
             <h3 class="wrapper__stories-title">{{title}}</h3>
             <p class="wrapper__stories-description">{{description}}</p>
-            <p class="wrapper__stories-date">Date of encounter: <em>{{date}}</em></p>
+            <p class="wrapper__stories-date">Date of encounter: <em>{{dateAdded}}</em></p>
             <div class="wrapper__stories-actions">
                 <a class="wrapper__stories-edit "href="/stories/edit/{{id}}" class="wrapper__stories-edit">Edit</a>
                 <form class="wrapper__stories-delete" action="/stories/{{id}}?_method=DELETE" method="post">

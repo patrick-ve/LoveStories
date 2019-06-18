@@ -11,8 +11,12 @@ const StorySchema = new Schema({
         type: String,
         required: true
     },
-    date: {
+    dateAdded: {
         type: String
+    },
+    user: {
+        type: String,
+        required: true
     },
     votes: {
         type: Number
