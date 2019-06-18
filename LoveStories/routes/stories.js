@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const { ensureAuthenticated } = require('../utils/auth');
 
 // Binnenhalen van story model
 require('../models/Story');
 const Story = mongoose.model('stories');
 
-// Afhandelen van toevoegen verhalen
-router.get('/', (req, res) => {
+// Afhandelen van verhalen
+router.get('/',  ensureAuthenticated, (req, res) => {
     Story.find({})
         .sort({date: 'desc'})
         .then(stories => { // Promise waaruit een pagina render volgt
@@ -17,11 +18,13 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/add', (req, res) => {
+// Afhandelen van toevoegen van verhalen
+router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('stories/add')
 });
 
-router.get('/edit/:id', (req, res) => {
+// Afhandelen van bewerken van verhalen
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Story.findOne({
         _id: req.params.id
     })
@@ -33,7 +36,7 @@ router.get('/edit/:id', (req, res) => {
     
 });
 
-router.post('/', (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
         const newStory = {
             title: req.body.title,
             description: req.body.description,
@@ -48,7 +51,7 @@ router.post('/', (req, res) => {
             });
     });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
     Story.findOne({
         _id: req.params.id
     })
@@ -65,7 +68,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     Story.deleteOne({
         _id: req.params.id
     })
