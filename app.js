@@ -12,7 +12,7 @@ const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 // Binnenhalen van routes
 const stories = require('./routes/stories');
@@ -25,7 +25,8 @@ require('./config/passport')(passport);
 // const mongooseURL = process.env.MONGO_DB_URL;
 
 // Database setup -----------------------------------------
-mongoose.connect('mongodb://localhost:27017/lovestories', {
+const dbConfig = require('./config/database');
+mongoose.connect(dbConfig.mongoURI, {
     useNewUrlParser: true
 });
 var db = mongoose.connection;
