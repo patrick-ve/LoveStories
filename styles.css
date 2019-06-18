@@ -49,9 +49,9 @@ table {
 
 /* Properties should have the following order:
 Layout:     position, top, right, bottom, left, z-index, display, transform
-Box model:  width, height, overflow     margin, padding,    border, outline
+Box model:  width, height, overflow         margin, padding,                border, outline
 Visual:     background, box-shadow
-Typography: font-family, font-size      text-align, text-transform      color
+Typography: font-family, font-size          text-align, text-transform      color
 Misc.:      content, cursor, etc. */
 
 * {
