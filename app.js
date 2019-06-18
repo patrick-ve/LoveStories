@@ -84,6 +84,10 @@ app.use((req, res, next) => {
 // Definiëren van public resources
 app.use(express.static(__dirname + '/public'));
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 // Definiëren van locatie voor opgeslagen afbeeldingen
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
