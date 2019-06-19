@@ -31,5 +31,8 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "time-stamp": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0"
   }
 }
