@@ -20,6 +20,7 @@ const users = require('./routes/users');
 
 // Binnenhalen van passport config
 require('./config/passport')(passport);
+require('dotenv').config();
 
 // require('dotenv').config();
 // const mongooseURL = process.env.MONGO_DB_URL;
