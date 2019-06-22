@@ -29,11 +29,25 @@
 npm install
 ```
 
-## Run tests
+## Run app
 
 ```sh
-npm run test
+npm run start
 ```
+
+## .env
+This projects uses an .env file, which contains all credentials. You should add it, before running 'npm run start'
+```
+ENV_PORT=<yourport>
+DB_HOST=<hostname>
+DB_USER=<username>
+DB_PASS=<password>
+DB_NAME=<dbname>
+```
+
+## Plugins
+This project uses an editorconfig file (.editorconfig) to keep all code styles and syntax consistent across every contributor of this project. If your code editor does not support editorconfig natively please install a plugin for your code editor.
+See https://editorconfig.org/#overview for further details.
 
 ## Author
 
@@ -53,6 +67,3 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2019 [Patrick van Everdingen](https://github.com/patrick-ve).<br />
 This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
