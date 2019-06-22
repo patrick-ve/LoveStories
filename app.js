@@ -112,7 +112,7 @@ app.get('/about', (req, res) => {
 });
 
 app.use('/stories', stories);
-app.use('/users', users)
+app.use('/users', users);
 
 app.listen(port, () => {
 	console.log(`Server has started at localhost:${port}`);
