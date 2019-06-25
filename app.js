@@ -15,7 +15,7 @@ const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-const port = process.env.APP_PORT || 5000;
+const port = process.env.PORT || 5000;
 
 // Binnenhalen van routes
 const stories = require('./routes/stories');
