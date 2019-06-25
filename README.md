@@ -18,40 +18,45 @@
 
 ### 🏠 [Homepage](https://github.com/patrick-ve/LoveStories)
 
-## Prerequisites
+## 💻 Prerequisites
 
 - npm &gt;=5.5.0
 - node &gt;=9.3.0
 
-## Install
+## ⌨️ Install
 
+Clone the repository into a folder
+```sh
+git clone https://github.com/patrick-ve/LoveStories.git
+```
+
+Install required npm packages
 ```sh
 npm install
 ```
 
-## Run app
+## 🏃‍ Run app
 
 ```sh
 npm run start
 ```
 
-## .env
-This projects uses an .env file, which contains all credentials. You should add it, before running 'npm run start'
+## 🔑 .env
+This projects uses an .env file, which contains all credentials and variables. You should add it, before running 'npm run start'
 ```
-ENV_PORT=<yourport>
-DB_HOST=<hostname>
-DB_USER=<username>
-DB_PASS=<password>
-DB_NAME=<dbname>
+APP_PORT=8080
+DB_HOST=lovestories-qg5ov.mongodb.net/test?retryWrites=true&w=majority
+DB_USER=admin
+DB_PASS=Frogfoot25
 ```
 
-## Plugins
+## ➡️ Plugins
 This project uses an editorconfig file (.editorconfig) to keep all code styles and syntax consistent across every contributor of this project. If your code editor does not support editorconfig natively please install a plugin for your code editor.
 See https://editorconfig.org/#overview for further details.
 
-## Author
+## 👤 Author
 
-👤 **Patrick van Everdingen**
+**Patrick van Everdingen**
 
 * Github: [@patrick-ve](https://github.com/patrick-ve)
 
