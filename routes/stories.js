@@ -4,7 +4,6 @@ const router = express.Router();
 const fs = require('fs');
 const mongoose = require('mongoose');
 const moment = require('moment');
-const multer = require('multer');
 const { ensureAuthenticated } = require('../utils/auth');
 const { postPhoto } = require('../utils/image');
 
@@ -13,18 +12,18 @@ require('../models/Story');
 const Story = mongoose.model('stories');
 
 // Multer setup
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, './static/upload');
-	},
-	filename: function (req, file, cb) {
-		cb(null, userId + '.jpg');
-	}
-});
+// const storage = multer.diskStorage({
+// 	destination: function (req, file, cb) {
+// 		cb(null, './static/upload');
+// 	},
+// 	filename: function (req, file, cb) {
+// 		cb(null, userId + '.jpg');
+// 	}
+// });
 
-const upload = multer({
-	storage: storage
-});
+// const upload = multer({
+// 	storage: storage
+// });
 
 
 // Afhandelen van verhalen
