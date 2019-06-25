@@ -9,7 +9,6 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 const methodOverride = require('method-override');
 const passport = require('passport');
 
