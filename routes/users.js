@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
@@ -13,6 +15,7 @@ const User = mongoose.model('users');
 router.get('/login', (req, res) => {
 	res.render('users/login');
 });
+
 
 router.post('/login', (req, res, next) => {
 	let errors = [];

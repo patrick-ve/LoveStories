@@ -7,7 +7,6 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const flash = require('connect-flash');
-const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -16,21 +15,20 @@ const passport = require('passport');
 
 // Initiëren van applicatie
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.APP_PORT || 5000;
 
 // Binnenhalen van routes
 const stories = require('./routes/stories');
 const users = require('./routes/users');
 
-// Binnenhalen van passport config
+// Binnenhalen van .env en passport config
+require('dotenv').config();
 require('./config/passport')(passport);
 
-// require('dotenv').config();
-// const mongooseURL = process.env.MONGO_DB_URL;
 
 // Database setup -----------------------------------------
-const dbConfig = require('./config/database');
-mongoose.connect(dbConfig.mongoURI, {
+const dbConnection = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`;
+mongoose.connect(dbConnection, {
 	useNewUrlParser: true
 });
 var db = mongoose.connection;
@@ -39,10 +37,10 @@ db.once('open', () => {
 	console.log('Database has started.');
 });
 db.on('reconnected', () => {
-	console.log('Database has reconnected.')
+	console.log('Database has reconnected.');
 });
 db.on('disconnected', () => {
-	console.log('Database has disconnected.')
+	console.log('Database has disconnected.');
 });
 
 // Middleware setup ---------------------------------------
@@ -87,19 +85,6 @@ app.use((req, res, next) => {
 
 // Definiëren van public resources
 app.use(express.static(__dirname + '/public'));
-
-// Definiëren van locatie voor opgeslagen afbeeldingen
-var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'uploads')
-	},
-	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now())
-	}
-});
-var upload = multer({
-	storage: storage
-});
 
 
 // Routes op server ---------------------------------------

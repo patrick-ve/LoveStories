@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -110,9 +110,9 @@ a, p, li {
             font-size: 2em;
 
             cursor: default;
-            user-select: none; 
+            user-select: none;
         }
-        
+
         .navigation__menu-company svg {
             margin: 15px 20px auto -20px;
 
@@ -180,7 +180,7 @@ main {
     .footer__list {
         padding: 25px;
     }
-    
+
         .footer__list li {
             padding: 3px;
 
@@ -211,7 +211,7 @@ main {
     bottom: 0;
     right: 0;
     position: absolute;
-    z-index: -1;  
+    z-index: -1;
 }
 
     .wrapper__home-heading {
@@ -220,29 +220,49 @@ main {
         padding-top: 270px;
 
         color: white;
-        
+
         cursor: default;
-        user-select: none; 
+        user-select: none;
 
         /* Animation from: https://css-tricks.com/snippets/css/typewriter-effect/ */
         text-align: center;
         overflow: hidden;
-        white-space: nowrap; 
+        white-space: nowrap;
         animation: typing 3.5s steps(50, end);
-    }
+	}
 
-.wrapper__about-svg {
-    max-width: 37.5%;
+.wrapper__about {
+	position: relative;
 
-    padding-top: 55px;
-
-    font-size: 1.2em;
-    line-height: 1.2em;
+	width: 100vw;
+	height: 100vh;
 }
+
+	.wrapper__about-svg {
+		position: absolute;
+		top: 50px;
+		left: 75px;
+
+		max-width: 40%;
+
+		font-size: 1.2em;
+		line-height: 1.2em;
+	}
+
+	.wrapper__about-copy {
+		position: absolute;
+		top: 250px;
+		left: 600px;
+
+		max-width: 50%;
+
+		padding: 25px;
+	}
 
 
 .wrapper {
-    width: 70vw;
+	width: 70vw;
+	min-height: 60vh;
 
     margin: 5% auto;
 
@@ -331,7 +351,7 @@ main {
 
             cursor: pointer;
         }
-        
+
         .wrapper__svg svg {
             position: absolute;
             right: 50px;
@@ -376,7 +396,7 @@ main {
 
             overflow: hidden;
             text-overflow: ellipsis;
-            
+
             font-weight: 200;
             line-height: 1.2em;
         }
@@ -396,7 +416,7 @@ main {
 
             padding: 5px 20px;
 
-            color: white; 
+            color: white;
             background: -webkit-linear-gradient(to right, #2F80ED, #56CCF2);
             background: linear-gradient(to right, #2F80ED, #56CCF2);
             border-radius: 10px;
@@ -411,7 +431,7 @@ main {
 
             font-size: 1em;
 
-            background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e); 
+            background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);
             background: linear-gradient(to right, #ef473a, #cb2d3e);
             border-radius: 10px;
             border: none;
@@ -426,7 +446,7 @@ main {
     margin: 20px auto;
     padding: 20px;
 
-    background: -webkit-linear-gradient(to left, #a8e063, #56ab2f);  
+    background: -webkit-linear-gradient(to left, #a8e063, #56ab2f);
     background: linear-gradient(to left, #a8e063, #56ab2f);
     border-radius: 10px;
 }
@@ -453,7 +473,7 @@ main {
 
 .login__form {
     margin: 0 auto;
-    
+
     min-height: 45vh;
 }
 
@@ -479,7 +499,7 @@ main {
 .login__form label {
     display: block;
     margin-bottom: 0;
-    
+
     font-family: 'Poppins', sans-serif;
     font-size: 1.25em;
     text-align: center;
@@ -519,10 +539,10 @@ main {
 }
 
 @keyframes typing {
-    from { 
+    from {
         width: 0;
     }
-    to { 
+    to {
         width: 100%;
     }
 }

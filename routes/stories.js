@@ -1,13 +1,31 @@
 /* eslint-disable no-unused-vars */
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const multer = require('multer');
 const { ensureAuthenticated } = require('../utils/auth');
+const { postPhoto } = require('../utils/image');
 
 // Binnenhalen van story model
 require('../models/Story');
 const Story = mongoose.model('stories');
+
+// Multer setup
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, './static/upload');
+	},
+	filename: function (req, file, cb) {
+		cb(null, userId + '.jpg');
+	}
+});
+
+const upload = multer({
+	storage: storage
+});
+
 
 // Afhandelen van verhalen
 router.get('/',  ensureAuthenticated, (req, res) => {
@@ -42,19 +60,21 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 				});
 			}
 		});
-
 });
 
-router.post('/', ensureAuthenticated, (req, res) => {
+router.post('/', ensureAuthenticated, upload.single('photo'), (req, res) => {
 	let date = req.body.date;
-	const newStory = {
+	const newStory = new Story({
 		title: req.body.title,
 		description: req.body.description,
 		dateAdded: moment(date).format('DD-MM-YYYY'),
-		user: req.user.id
-	};
-	new Story(newStory)
-		.save()
+		user: req.user.id,
+		photo: {
+			data: fs.readFileSync(req.files.photo.path),
+			contentType: 'image/jpg'
+		}
+	});
+	newStory .save()
 		// Promise waaruit een redirect volgt
 		.then(story => {
 			req.flash('success_message', 'Your story has successfully been added!');
@@ -71,6 +91,8 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
 			story.title = req.body.title,
 			story.description = req.body.description,
 			story.date = req.body.date;
+			story.photo.data = fs.readFileSync(req.files.userPhoto.path);
+			story.photo.contentType = 'image/jpg';
 			story.save()
 				.then(story => {
 					req.flash('success_message', 'Your story has successfully been updated!');
