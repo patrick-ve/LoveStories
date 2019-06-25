@@ -98,6 +98,10 @@ app.get('/about', (req, res) => {
 app.use('/stories', stories);
 app.use('/users', users);
 
+app.get('*', (req, res) => {
+	res.render('404');
+});
+
 app.listen(port, () => {
 	console.log(`Server has started at localhost:${port}`);
 });
