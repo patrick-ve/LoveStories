@@ -314,7 +314,7 @@ main {
 
             .form__story > * {
                 display: none;
-                /* opacity:0; */
+                opacity: 0;
                 margin: 10px auto;
 
                 width: 30vw;
@@ -323,7 +323,7 @@ main {
 
             .form__story > input:first-of-type {
                 display: block;
-                /* opacity:1; */
+                opacity: 1;
             }
             .form__story input:valid + label + input,
             .form__story input:valid + label + textarea,
@@ -331,7 +331,7 @@ main {
             .form__story textarea:valid + label + textarea,
             .form__story button {
                 display: block;
-                opacity:1
+                opacity: 1;
             }
 
             .form__story-button {

@@ -61,19 +61,19 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 		});
 });
 
-router.post('/', ensureAuthenticated, upload.single('photo'), (req, res) => {
+router.post('/', ensureAuthenticated, (req, res) => {
 	let date = req.body.date;
 	const newStory = new Story({
 		title: req.body.title,
 		description: req.body.description,
 		dateAdded: moment(date).format('DD-MM-YYYY'),
 		user: req.user.id,
-		photo: {
-			data: fs.readFileSync(req.files.photo.path),
-			contentType: 'image/jpg'
-		}
+		// photo: {
+		// 	data: fs.readFileSync(req.files.photo.path),
+		// 	contentType: 'image/jpg'
+		// }
 	});
-	newStory .save()
+	newStory.save()
 		// Promise waaruit een redirect volgt
 		.then(story => {
 			req.flash('success_message', 'Your story has successfully been added!');
