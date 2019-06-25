@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Aanmaken van schema voor een story
+// Aanmaken van schema voor een story. Kan mogelijk ongebruikte properties bevatten.
 const StorySchema = new Schema({
 	title: {
 		type: String,
