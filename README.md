@@ -17,6 +17,7 @@
 > A dating app that reconnects potential love interests and crushes. At one point in your life you might have encountered a cute person whilst travelling on the train or doing your daily walk around the park. You and a cute person lock eye contact and flirt, but suddenly you reached your destination and it is time for both of you to part ways. But after you return home, you thought it was a pity that you didn&#39;t ask for a phone number from that cute person! This app allows you to post a story about that special encounter, and hopefully your crush might respond too!
 
 ### 🏠 [Homepage](https://github.com/patrick-ve/LoveStories)
+Checkout the project on https://peaceful-dawn-68577.herokuapp.com/
 
 ## 💻 Prerequisites
 
@@ -44,10 +45,10 @@ npm run start
 ## 🔑 .env
 This projects uses an .env file, which contains all credentials and variables. You should add it, before running 'npm run start'
 ```
-APP_PORT=8080
-DB_HOST=lovestories-qg5ov.mongodb.net/test?retryWrites=true&w=majority
-DB_USER=admin
-DB_PASS=Frogfoot25
+APP_PORT=<port_number>
+DB_HOST=<host_name>
+DB_USER=<db_user>
+DB_PASS=<db_password>
 ```
 
 ## ➡️ Plugins
