@@ -50,6 +50,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 		_id: req.params.id
 	})
 		.then(story => {
+			// Controleren of gebruiker gemachtigd is om een verhaal te bewerken
 			if(story.user != req.user.id) {
 				req.flash('error_message', 'You are not allowed to edit this story!');
 				res.redirect('/stories');
@@ -90,8 +91,8 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
 			story.title = req.body.title,
 			story.description = req.body.description,
 			story.date = req.body.date;
-			story.photo.data = fs.readFileSync(req.files.userPhoto.path);
-			story.photo.contentType = 'image/jpg';
+			// story.photo.data = fs.readFileSync(req.files.userPhoto.path);
+			// story.photo.contentType = 'image/jpg';
 			story.save()
 				.then(story => {
 					req.flash('success_message', 'Your story has successfully been updated!');
@@ -105,6 +106,7 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
 		_id: req.params.id
 	})
 		.then(story => {
+			// Controleren of gebruiker gemachtigd is om een verhaal te verwijderen
 			if(story.user != req.user.id) {
 				req.flash('error_message', 'You are not allowed to delete this story!');
 				res.redirect('/stories');
